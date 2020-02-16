@@ -1,0 +1,54 @@
+.header {
+  align-items: center;
+  display: flex;
+  font-family: 'Creepster';
+  justify-content: space-between;
+  margin: 0;
+  width: 100%;
+}
+
+.header__title {
+  font-family: 'Creepster';
+  font-size: 4rem;
+  margin: .5rem 1rem;
+}
+
+.header__links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+
+.header__links li {
+  font-size: 2rem;
+  margin: 1rem;
+}
+
+.header__link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header__link--active {
+  text-decoration: underline;
+}
+
+.header__link:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 425px) {
+  .header {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .header__title {
+    font-size: 3rem;
+  }
+
+  .header__links {
+    padding: 0;
+  }
+}
