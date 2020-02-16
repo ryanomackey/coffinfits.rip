@@ -12,7 +12,7 @@ const About = () => {
     query {
       placeholderImage: file(relativePath: { eq: "southern-heights.jpeg" }) {
         childImageSharp {
-          fluid(maxWidth: 600) {
+          fluid(maxWidth: 672) {
             ...GatsbyImageSharpFluid
           }
         }

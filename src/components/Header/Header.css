@@ -3,8 +3,8 @@
   display: flex;
   font-family: 'Creepster';
   justify-content: space-between;
-  margin: 0;
-  width: 100%;
+  margin: 0 auto;
+  max-width: 1584px;
 }
 
 .header__title {
@@ -37,7 +37,7 @@
   text-decoration: underline;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 672px) {
   .header {
     flex-direction: column;
     justify-content: center;
