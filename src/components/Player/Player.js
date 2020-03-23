@@ -17,12 +17,20 @@ import './Player.css'
 
 const Player = ({ tracks }) => {
   const { playing, setPlaying, trackDuration, currentTime } = useAudioPlayer()
-  const [activeTrackIndex, setActiveTrackIndex] = useState(0)
+  const [activeTrack, setActiveTrack] = useState();
 
-  const activeTrack = tracks[activeTrackIndex]
+  const activeTrackIndex = activeTrack && tracks.findIndex(track => track.title === activeTrack.title);
+
+  const togglePlay = () => {
+    if (!activeTrack) {
+      setActiveTrack(tracks[0]);
+    }
+ 
+    setPlaying(!playing);
+  }
 
   const handleTrackClick = index => {
-    setActiveTrackIndex(index)
+    setActiveTrack(tracks[index]);
 
     if (!playing) {
       setPlaying(true)
@@ -31,18 +39,18 @@ const Player = ({ tracks }) => {
 
   const handleForwardClick = () => {
     if (activeTrackIndex + 1 < tracks.length) {
-      return setActiveTrackIndex(activeTrackIndex + 1)
+      return setActiveTrack(tracks[activeTrackIndex + 1])
     }
 
-    return setActiveTrackIndex(0)
+    return setActiveTrack(tracks[0])
   }
 
   const handleBackwardClick = () => {
     if (activeTrackIndex - 1 >= 0) {
-      return setActiveTrackIndex(activeTrackIndex - 1)
+      return setActiveTrack(tracks[activeTrackIndex - 1])
     }
 
-    return setActiveTrackIndex(tracks.length - 1)
+    return setActiveTrack(tracks[tracks.length - 1])
   }
 
   const formatDuration = duration =>
@@ -50,10 +58,10 @@ const Player = ({ tracks }) => {
 
   return (
     <div className="player">
-      <audio id="audio" src={activeTrack.url} />
+      <audio id="audio" src={activeTrack ? activeTrack.url : null} />
       <div className="player__active-track-info">
-        <span>{activeTrack.title}</span>
-        <span>{`${activeTrackIndex + 1} of ${tracks.length}`}</span>
+        <span>{activeTrack ? activeTrack.title : '--'}</span>
+        <span>{`${activeTrack ? activeTrackIndex + 1 : '--'} of ${tracks.length}`}</span>
       </div>
       <div className="player__progress">
         <span>{formatDuration(currentTime)}</span>
@@ -69,13 +77,13 @@ const Player = ({ tracks }) => {
           <FontAwesomeIcon
             icon={faPause}
             size="3x"
-            onClick={() => setPlaying(!playing)}
+            onClick={() => togglePlay()}
           />
         ) : (
           <FontAwesomeIcon
             icon={faPlay}
             size="3x"
-            onClick={() => setPlaying(!playing)}
+            onClick={() => togglePlay()}
           />
         )}
         <FontAwesomeIcon
