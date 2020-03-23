@@ -1,25 +1,109 @@
-import React from 'react'
+import React, { useState } from 'react'
+import moment from 'moment'
+import momentDurationFormatSetup from 'moment-duration-format' // eslint-disable-line
 
-class Player extends React.Component {
-  constructor(props) {
-    super(props)
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faPlay,
+  faPause,
+  faBackward,
+  faForward,
+  faVolumeUp,
+} from '@fortawesome/free-solid-svg-icons'
 
-    this.player = React.createRef()
+import useAudioPlayer from './useAudioPlayer'
+
+import './Player.css'
+
+const Player = ({ tracks }) => {
+  const { playing, setPlaying, trackDuration, currentTime } = useAudioPlayer()
+  const [activeTrackIndex, setActiveTrackIndex] = useState(0)
+
+  const activeTrack = tracks[activeTrackIndex]
+
+  const handleTrackClick = index => {
+    setActiveTrackIndex(index)
+
+    if (!playing) {
+      setPlaying(true)
+    }
   }
 
-  componentDidMount() {
-    const player = this.player.current
+  const handleForwardClick = () => {
+    if (activeTrackIndex + 1 < tracks.length) {
+      return setActiveTrackIndex(activeTrackIndex + 1)
+    }
+
+    return setActiveTrackIndex(0)
   }
 
-  render() {
-    return (
-      <div>
-        <audio ref={this.player} controls>
-          <source src={this.props.src} />
-        </audio>
+  const handleBackwardClick = () => {
+    if (activeTrackIndex - 1 >= 0) {
+      return setActiveTrackIndex(activeTrackIndex - 1)
+    }
+
+    return setActiveTrackIndex(tracks.length - 1)
+  }
+
+  const formatDuration = duration =>
+    moment.duration(duration, 'seconds').format('mm:ss', { trim: false })
+
+  return (
+    <div className="player">
+      <audio id="audio" src={activeTrack.url} />
+      <div className="player__active-track-info">
+        <span>{activeTrack.title}</span>
+        <span>{`${activeTrackIndex + 1} of ${tracks.length}`}</span>
       </div>
-    )
-  }
+      <div className="player__progress">
+        <span>{formatDuration(currentTime)}</span>
+        <span>{formatDuration(trackDuration - currentTime)}</span>
+      </div>
+      <div className="player__controls">
+        <FontAwesomeIcon
+          icon={faBackward}
+          size="3x"
+          onClick={() => handleBackwardClick()}
+        />
+        {playing ? (
+          <FontAwesomeIcon
+            icon={faPause}
+            size="3x"
+            onClick={() => setPlaying(!playing)}
+          />
+        ) : (
+          <FontAwesomeIcon
+            icon={faPlay}
+            size="3x"
+            onClick={() => setPlaying(!playing)}
+          />
+        )}
+        <FontAwesomeIcon
+          icon={faForward}
+          size="3x"
+          onClick={() => handleForwardClick()}
+        />
+      </div>
+      <div className="player__tracks">
+        {tracks.map((track, index) => (
+          <div
+            className="player__track"
+            key={track.title}
+            onClick={() => handleTrackClick(index)}
+          >
+            <span className="player__track-number">
+              {activeTrackIndex === index && playing ? (
+                <FontAwesomeIcon icon={faVolumeUp} size="1x" />
+              ) : (
+                index + 1
+              )}
+            </span>
+            <span className="player__track-title">{track.title}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default Player

@@ -1,5 +1,14 @@
-.album__container {}
+.album__container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5%;
+  width: 100%;
+}
+
+.album__meta-container, .album__player-container {
+  width: 100%;
+}
 
 .album__art-container {
-  max-width: 500px;
+  width: 100%;
 }

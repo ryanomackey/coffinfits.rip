@@ -2,27 +2,34 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
-import Player from '../components/Player';
+import Layout from '../components/Layout'
+import Player from '../components/Player'
 
-import './album.css';
+import './album.css'
 
 const Album = ({ pageContext, data }) => {
   const { id, name, year, tracks } = pageContext
 
   return (
-    <div className="album__container">
-      <h1>{name}</h1>
-      <div className="album__art-container">
-        <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+    <Layout>
+      <div className="album__container">
+        <div className="album__meta-container">
+          <h1>{name}</h1>
+          <div className="album__art-container">
+            <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+          </div>
+        </div>
+        <div className="album__player-container">
+          <Player tracks={tracks} />
+        </div>
       </div>
-      <Player src={tracks[0].url} />
-    </div>
+    </Layout>
   )
-};
+}
 
 export const query = graphql`
   query AlbumArt($id: String) {
-    placeholderImage: file(parent: {id: {eq: $id}}) {
+    placeholderImage: file(parent: { id: { eq: $id } }) {
       childImageSharp {
         fluid(maxWidth: 1600) {
           ...GatsbyImageSharpFluid

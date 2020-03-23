@@ -1,0 +1,18 @@
+.music {
+  border-bottom: 1px solid #333333;
+  margin: 2rem 0;
+}
+
+.music__link {
+  border-top: 1px solid #333333;
+  color: inherit;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  text-decoration: none;
+}
+
+.music__link-name {
+  font-size: 1.5rem;
+  align-self: center;
+  margin-left: 1rem;
+}

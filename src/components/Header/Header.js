@@ -5,13 +5,13 @@ import './Header.css'
 
 const links = [
   {
+    href: '/music',
+    title: 'Music',
+  },
+  {
     href: '/about',
     title: 'About',
   },
-  // {
-  //   href: '/shows',
-  //   title: 'Shows',
-  // },
 ]
 
 const Header = () => (

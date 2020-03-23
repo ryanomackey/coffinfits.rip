@@ -110,6 +110,7 @@ exports.sourceNodes = async ({
       name,
       year,
       tracks,
+      path: `music/${name.toLowerCase().replace(/\s/g, '-')}`,
       parent: null,
       children: [],
       internal: {
@@ -130,7 +131,7 @@ exports.onCreateNode = ({ node, actions, store, cache, createNodeId }) => {
 
     const buffer = Buffer.from(JSON.parse(node.internal.content).data)
 
-    const childNode = createFileNodeFromBuffer({
+    createFileNodeFromBuffer({
       buffer,
       parentNodeId: id,
       name,
@@ -158,16 +159,17 @@ exports.createPages = ({ graphql, actions }) => {
               title
               url
             }
+            path
           }
         }
       }
     }
   `).then(result => {
     result.data.allAlbum.edges.forEach(edge => {
-      const { id, name, year, tracks } = edge.node
+      const { id, name, year, tracks, path } = edge.node
 
       createPage({
-        path: name.toLowerCase().replace(/\s/g, '-'),
+        path,
         component: albumPageTemplate,
         context: {
           id,

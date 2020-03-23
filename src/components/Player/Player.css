@@ -1,0 +1,36 @@
+.player__active-track-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.player__progress {
+  display: flex;
+  justify-content: space-between;
+}
+
+.player__controls {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.player__tracks {
+  width: 100%;
+}
+
+.player__track {
+  border-bottom: 1px solid #333333;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 5% 95%;
+  grid-gap: 1rem;
+  padding: 1rem;
+}
+
+.player__track:hover {
+  background-color: #333333;
+}
+
+.player__track-number {
+  justify-self: end;
+}
