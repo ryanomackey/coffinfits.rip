@@ -4,6 +4,7 @@ import {
   faBandcamp,
   faFacebook,
   faInstagram,
+  faYoutube,
 } from '@fortawesome/free-brands-svg-icons'
 
 import './SocialLinks.css'
@@ -16,6 +17,10 @@ const links = [
   {
     icon: faInstagram,
     href: 'https://www.instagram.com/coffinfits/',
+  },
+  {
+    icon: faYoutube,
+    href: 'https://www.youtube.com/channel/UCOERvp0TD-KHXMDQsIeu1bQ',
   },
   {
     icon: faBandcamp,
