@@ -4,7 +4,6 @@ import Img from 'gatsby-image'
 
 import './About.css'
 
-import Layout from '../../components/Layout'
 import SEO from '../../components/SEO'
 
 const About = () => {
@@ -21,7 +20,7 @@ const About = () => {
   `)
 
   return (
-    <Layout>
+    <>
       <SEO title="About" />
       <div className="about">
         <div className="about__image-container">
@@ -47,7 +46,7 @@ const About = () => {
           </p>
         </div>
       </div>
-    </Layout>
+    </>
   )
 }
 
