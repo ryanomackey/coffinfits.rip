@@ -1,14 +1,19 @@
+.album__page-container {
+  padding: 1rem;
+}
+
 .album__container {
   display: flex;
   flex-wrap: wrap;
-  padding: 5%;
   width: 100%;
 }
 
-.album__meta-container, .album__player-container {
+.album__art, .album__audio-player {
   width: 100%;
 }
 
-.album__art-container {
-  width: 100%;
+@media screen and (min-width: 1024px) {
+  .album__art, .album__audio-player {
+    width: 50%;
+  }
 }

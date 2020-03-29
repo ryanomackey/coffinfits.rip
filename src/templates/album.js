@@ -12,15 +12,15 @@ const Album = ({ pageContext, data }) => {
 
   return (
     <Layout>
-      <div className="album__container">
-        <div className="album__meta-container">
-          <h1>{name}</h1>
-          <div className="album__art-container">
+      <div className="album__page-container">
+        <h1>{name}</h1>
+        <div className="album__container">
+          <div className="album__art"> 
             <Img fluid={data.placeholderImage.childImageSharp.fluid} />
           </div>
-        </div>
-        <div className="album__player-container">
-          <Player tracks={tracks} />
+          <div className="album__audio-player">
+            <Player tracks={tracks} />
+          </div>
         </div>
       </div>
     </Layout>
