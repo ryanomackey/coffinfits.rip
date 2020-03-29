@@ -26,6 +26,7 @@ const Header = () => (
             to={link.href}
             className="header__link"
             activeClassName="header__link--active"
+            partiallyActive
           >
             {link.title}
           </Link>
