@@ -1,9 +1,14 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, createContext } from 'react'
 
 const useAudioPlayer = () => {
   const [playing, setPlaying] = useState(false)
   const [trackDuration, setTrackDuration] = useState()
   const [currentTime, setCurrentTime] = useState()
+  const [tracks, setTracks] = useState([])
+  const [activeTrack, setActiveTrack] = useState()
+
+  const activeTrackIndex =
+    activeTrack && tracks.findIndex(track => track.title === activeTrack.title)
 
   useEffect(() => {
     const audio = document.getElementById('audio')
@@ -33,7 +38,20 @@ const useAudioPlayer = () => {
     setPlaying,
     trackDuration,
     currentTime,
+    tracks,
+    setTracks,
+    activeTrack,
+    activeTrackIndex,
+    setActiveTrack,
   }
 }
 
-export default useAudioPlayer
+export const PlayerContext = createContext({})
+
+export const PlayerProvider = ({ children }) => {
+  const value = useAudioPlayer()
+
+  return (
+    <PlayerContext.Provider value={value}>{children}</PlayerContext.Provider>
+  )
+}

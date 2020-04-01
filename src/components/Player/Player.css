@@ -1,36 +1,45 @@
+.player {
+  background-color: #333333;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  padding: .5rem;
+  width: 100%;
+  z-index: 1;
+}
+
+.player__album-art {
+  height: 100px;
+  width: 100px;
+  margin-right: .5rem;
+}
+
+.player__album-art img {
+  margin: 0;
+}
+
+.player__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 1;
+}
+
 .player__active-track-info {
   display: flex;
   justify-content: space-between;
 }
 
+.player__controls {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: .4rem 3rem;
+  width: 250px;
+}
+
 .player__progress {
   display: flex;
   justify-content: space-between;
-}
-
-.player__controls {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-}
-
-.player__tracks {
-  width: 100%;
-}
-
-.player__track {
-  border-bottom: 1px solid #333333;
-  cursor: pointer;
-  display: grid;
-  grid-template-columns: 5% 95%;
-  grid-gap: 1rem;
-  padding: 1rem;
-}
-
-.player__track:hover {
-  background-color: #333333;
-}
-
-.player__track-number {
-  justify-self: end;
 }

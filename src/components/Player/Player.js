@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
+import Img from 'gatsby-image'
 import moment from 'moment'
 import momentDurationFormatSetup from 'moment-duration-format' // eslint-disable-line
 
@@ -8,33 +9,30 @@ import {
   faPause,
   faBackward,
   faForward,
-  faVolumeUp,
 } from '@fortawesome/free-solid-svg-icons'
 
-import useAudioPlayer from './useAudioPlayer'
+import { PlayerContext } from './useAudioPlayer'
 
 import './Player.css'
 
-const Player = ({ tracks }) => {
-  const { playing, setPlaying, trackDuration, currentTime } = useAudioPlayer()
-  const [activeTrack, setActiveTrack] = useState();
-
-  const activeTrackIndex = activeTrack && tracks.findIndex(track => track.title === activeTrack.title);
+const Player = () => {
+  const {
+    playing,
+    setPlaying,
+    trackDuration,
+    currentTime,
+    tracks,
+    activeTrack,
+    activeTrackIndex,
+    setActiveTrack,
+  } = useContext(PlayerContext)
 
   const togglePlay = () => {
     if (!activeTrack) {
-      setActiveTrack(tracks[0]);
+      setActiveTrack(tracks[0])
     }
- 
-    setPlaying(!playing);
-  }
 
-  const handleTrackClick = index => {
-    setActiveTrack(tracks[index]);
-
-    if (!playing) {
-      setPlaying(true)
-    }
+    setPlaying(!playing)
   }
 
   const handleForwardClick = () => {
@@ -57,60 +55,53 @@ const Player = ({ tracks }) => {
     moment.duration(duration, 'seconds').format('mm:ss', { trim: false })
 
   return (
-    <div className="player">
+    <>
       <audio id="audio" src={activeTrack ? activeTrack.url : null} />
-      <div className="player__active-track-info">
-        <span>{activeTrack ? activeTrack.title : '--'}</span>
-        <span>{`${activeTrack ? activeTrackIndex + 1 : '--'} of ${tracks.length}`}</span>
-      </div>
-      <div className="player__progress">
-        <span>{formatDuration(currentTime)}</span>
-        <span>{formatDuration(trackDuration - currentTime)}</span>
-      </div>
-      <div className="player__controls">
-        <FontAwesomeIcon
-          icon={faBackward}
-          size="3x"
-          onClick={() => handleBackwardClick()}
-        />
-        {playing ? (
-          <FontAwesomeIcon
-            icon={faPause}
-            size="3x"
-            onClick={() => togglePlay()}
-          />
-        ) : (
-          <FontAwesomeIcon
-            icon={faPlay}
-            size="3x"
-            onClick={() => togglePlay()}
-          />
-        )}
-        <FontAwesomeIcon
-          icon={faForward}
-          size="3x"
-          onClick={() => handleForwardClick()}
-        />
-      </div>
-      <div className="player__tracks">
-        {tracks.map((track, index) => (
-          <div
-            className="player__track"
-            key={track.title}
-            onClick={() => handleTrackClick(index)}
-          >
-            <span className="player__track-number">
-              {activeTrackIndex === index && playing ? (
-                <FontAwesomeIcon icon={faVolumeUp} size="1x" />
-              ) : (
-                index + 1
-              )}
-            </span>
-            <span className="player__track-title">{track.title}</span>
+      {activeTrack && (
+        <div className="player">
+          <div className="player__album-art">
+            <img src={activeTrack && activeTrack.art.src} />
           </div>
-        ))}
-      </div>
-    </div>
+          <div className="player__container">
+            <div className="player__active-track-info">
+              <span>{activeTrack ? activeTrack.title : '--'}</span>
+              <span>{`${activeTrack ? activeTrackIndex + 1 : '--'} of ${
+                tracks.length
+              }`}</span>
+            </div>
+            <div className="player__controls">
+              <FontAwesomeIcon
+                icon={faBackward}
+                size="2x"
+                onClick={() => handleBackwardClick()}
+              />
+              {playing ? (
+                <FontAwesomeIcon
+                  icon={faPause}
+                  size="2x"
+                  onClick={() => togglePlay()}
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={faPlay}
+                  size="2x"
+                  onClick={() => togglePlay()}
+                />
+              )}
+              <FontAwesomeIcon
+                icon={faForward}
+                size="2x"
+                onClick={() => handleForwardClick()}
+              />
+            </div>
+            <div className="player__progress">
+              <span>{formatDuration(currentTime)}</span>
+              <span>{formatDuration(trackDuration - currentTime)}</span>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 

@@ -4,23 +4,28 @@ import Img from 'gatsby-image'
 
 import SEO from '../components/SEO'
 
-import './music.css';
+import './music.css'
 
 const Music = ({ data }) => {
   return (
     <>
       <SEO title="Music" />
       <div className="music">
-        {data.allAlbum.edges
-          .map(album => {
-            const albumArt = data.allFile.edges.find(file => file.node.parent?.id === album.node.id);
-            
-            return (
-              <Link key={album.node.id} to={`/${album.node.path}`} className="music__link">
-                <Img fluid={albumArt.node.placeholderImage.fluid} />
-                <span className="music__link-name">{album.node.name}</span>
-              </Link>
-            );
+        {data.allAlbum.edges.map(album => {
+          const albumArt = data.allFile.edges.find(
+            file => file.node.parent?.id === album.node.id
+          )
+
+          return (
+            <Link
+              key={album.node.id}
+              to={`/${album.node.path}`}
+              className="music__link"
+            >
+              <Img fluid={albumArt.node.placeholderImage.fluid} />
+              <span className="music__link-name">{album.node.name}</span>
+            </Link>
+          )
         })}
       </div>
     </>

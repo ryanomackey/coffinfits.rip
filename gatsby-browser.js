@@ -3,11 +3,9 @@
  *
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
-const React = require("react")
-const Layout = require("./src/components/Layout").default
+const React = require('react')
+const Layout = require('./src/components/Layout').default
 
-exports.wrapPageElement = ({ element, props }) => {
-  // props provide same data to Layout as Page element will get
-  // including location, data, etc - you don't need to pass it
+exports.wrapPageElement = ({ element }) => {
   return <Layout>{element}</Layout>
 }

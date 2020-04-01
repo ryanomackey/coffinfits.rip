@@ -1,0 +1,20 @@
+.tracks {
+  width: 100%;
+}
+
+.tracks__track {
+  border-bottom: 1px solid #333333;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 5% 95%;
+  grid-gap: 1rem;
+  padding: 1rem;
+}
+
+.tracks__track:hover {
+  background-color: #333333;
+}
+
+.tracks__track-number {
+  justify-self: end;
+}
