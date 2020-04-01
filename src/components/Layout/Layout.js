@@ -11,7 +11,6 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import Header from '../Header'
 import SocialLinks from '../SocialLinks'
-import Player, { PlayerProvider } from '../Player'
 
 import 'typeface-creepster'
 import './Layout.css'
@@ -29,20 +28,17 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <PlayerProvider>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 1680,
-            paddingBottom: '116px'
-          }}
-        >
-          <main>{children}</main>
-          <SocialLinks />
-          <Player />
-        </div>
-      </PlayerProvider>
+      <Header siteTitle={data.site.siteMetadata.title} />
+      <div
+        style={{
+          margin: `0 auto`,
+          maxWidth: 1680,
+          paddingBottom: '116px'
+        }}
+      >
+        <main>{children}</main>
+        <SocialLinks />
+      </div>
     </>
   )
 }

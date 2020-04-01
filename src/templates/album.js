@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
+import Layout from '../components/Layout'
 import Tracks from '../components/Tracks'
 
 import './album.css'
@@ -10,7 +11,7 @@ const Album = ({ pageContext, data }) => {
   const { name, tracks } = pageContext
 
   return (
-    <>
+    <Layout>
       <div className="album__page-container">
         <h1>{name}</h1>
         <div className="album__container">
@@ -22,7 +23,7 @@ const Album = ({ pageContext, data }) => {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   )
 }
 

@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import Img from 'gatsby-image'
 import moment from 'moment'
 import momentDurationFormatSetup from 'moment-duration-format' // eslint-disable-line
 
@@ -60,7 +59,7 @@ const Player = () => {
       {activeTrack && (
         <div className="player">
           <div className="player__album-art">
-            <img src={activeTrack && activeTrack.art.src} />
+            <img src={activeTrack && activeTrack.art.src} alt={`${activeTrack.name} album art`} />
           </div>
           <div className="player__container">
             <div className="player__active-track-info">

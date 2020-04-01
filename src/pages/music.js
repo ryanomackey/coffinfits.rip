@@ -2,13 +2,14 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 
+import Layout from '../components/Layout'
 import SEO from '../components/SEO'
 
 import './music.css'
 
 const Music = ({ data }) => {
   return (
-    <>
+    <Layout>
       <SEO title="Music" />
       <div className="music">
         {data.allAlbum.edges.map(album => {
@@ -28,7 +29,7 @@ const Music = ({ data }) => {
           )
         })}
       </div>
-    </>
+    </Layout>
   )
 }
 

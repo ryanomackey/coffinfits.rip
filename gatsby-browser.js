@@ -3,9 +3,12 @@
  *
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
-const React = require('react')
-const Layout = require('./src/components/Layout').default
+import React from "react";
+import Player, { PlayerProvider } from "./src/components/Player";
 
-exports.wrapPageElement = ({ element }) => {
-  return <Layout>{element}</Layout>
-}
+export const wrapRootElement = ({ element }) => (
+  <PlayerProvider>
+    <Player />
+    {element}
+  </PlayerProvider>
+);
