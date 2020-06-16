@@ -36,10 +36,51 @@
   display: flex;
   justify-content: space-between;
   padding: .4rem 3rem;
-  width: 250px;
+  width: 100%;
+}
+
+.player__progress-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.player__progress-time {
+  width: 50px;
+}
+
+.player__progress-bar-container {
+  background-color: transparent;
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  margin: 0 24px;
+}
+
+.player__progress-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .player__progress {
-  display: flex;
-  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  background: white;
+  transform-origin: 0% 50%;
+}
+
+.player__progress-knob {
+  width: 24px;
+  height: 24px;
+  border-radius: 20px;
+  left: -20px;
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }

@@ -4,6 +4,7 @@ const useAudioPlayer = () => {
   const [playing, setPlaying] = useState(false)
   const [trackDuration, setTrackDuration] = useState()
   const [currentTime, setCurrentTime] = useState()
+  const [clickedTime, setClickedTime] = useState();
   const [tracks, setTracks] = useState([])
   const [activeTrack, setActiveTrack] = useState()
 
@@ -27,6 +28,11 @@ const useAudioPlayer = () => {
 
     playing ? audio.play() : audio.pause()
 
+    if (clickedTime && clickedTime !== currentTime) {
+      audio.currentTime = clickedTime;
+      setClickedTime(null);
+    } 
+
     return () => {
       audio.removeEventListener('loadeddata', setAudioData)
       audio.removeEventListener('timeupdate', setAudioTime)
@@ -38,6 +44,7 @@ const useAudioPlayer = () => {
     setPlaying,
     trackDuration,
     currentTime,
+    setClickedTime,
     tracks,
     setTracks,
     activeTrack,
