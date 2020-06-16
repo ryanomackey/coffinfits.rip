@@ -1,6 +1,7 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 import moment from 'moment'
 import momentDurationFormatSetup from 'moment-duration-format' // eslint-disable-line
+import { motion, useMotionValue, useDragControls, useTransform } from 'framer-motion'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -20,11 +21,16 @@ const Player = () => {
     setPlaying,
     trackDuration,
     currentTime,
+    setClickedTime,
     tracks,
     activeTrack,
     activeTrackIndex,
     setActiveTrack,
   } = useContext(PlayerContext)
+
+  const x = useMotionValue(0);
+  const progressScaleX = useTransform(x, [0, 300], [0, 1]);
+  const dragControls = useDragControls()
 
   const togglePlay = () => {
     if (!activeTrack) {
@@ -93,8 +99,33 @@ const Player = () => {
                 onClick={() => handleForwardClick()}
               />
             </div>
-            <div className="player__progress">
+            <div className="player__progress-container">
               <span>{formatDuration(currentTime)}</span>
+              <div 
+                className="player__progress-bar-container"
+                onMouseDown={event => { 
+                  dragControls.start(event, { snapToCursor: true })
+                  setClickedTime((trackDuration / 300) * x.get())
+                }} 
+              >
+                <div className="player__progress-bar">
+                  <motion.div className="player__progress" style={{ scaleX: progressScaleX }} />
+                </div>
+                <motion.div
+                  className="player__progress-knob" 
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 300 }}
+                  dragControls={dragControls}
+                  dragElastic={0}
+                  dragMomentum={false}
+                  onDragEnd={
+                    (event, info) => {
+                      setClickedTime((trackDuration / 300) * info.point.x)
+                    }
+                  }
+                  style={{ x }}
+                />
+              </div>
               <span>{formatDuration(trackDuration - currentTime)}</span>
             </div>
           </div>
