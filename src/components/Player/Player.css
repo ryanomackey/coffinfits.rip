@@ -36,23 +36,27 @@
   display: flex;
   justify-content: space-between;
   padding: .4rem 3rem;
-  width: 250px;
+  width: 100%;
 }
 
 .player__progress-container {
+  align-items: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.player__progress-time {
+  width: 50px;
 }
 
 .player__progress-bar-container {
   background-color: transparent;
-  width: 300px;
   height: 40px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   position: relative;
-  margin: 0 16px;
+  margin: 0 24px;
 }
 
 .player__progress-bar {
@@ -71,8 +75,8 @@
 }
 
 .player__progress-knob {
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
   border-radius: 20px;
   left: -20px;
   position: absolute;

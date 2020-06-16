@@ -28,9 +28,14 @@ const Player = () => {
     setActiveTrack,
   } = useContext(PlayerContext)
 
+  const WIDTH = 250;
+
   const x = useMotionValue(0);
-  const progressScaleX = useTransform(x, [0, 300], [0, 1]);
+  const progressScaleX = useTransform(x, [0, WIDTH], [0, 1]);
   const dragControls = useDragControls()
+
+  const currPercent = currentTime / trackDuration;
+  x.set(currPercent * WIDTH);
 
   const togglePlay = () => {
     if (!activeTrack) {
@@ -100,12 +105,13 @@ const Player = () => {
               />
             </div>
             <div className="player__progress-container">
-              <span>{formatDuration(currentTime)}</span>
+              <span className="player__progress-time">{formatDuration(currentTime)}</span>
               <div 
                 className="player__progress-bar-container"
+                style={{ width: `${WIDTH}px` }}
                 onMouseDown={event => { 
                   dragControls.start(event, { snapToCursor: true })
-                  setClickedTime((trackDuration / 300) * x.get())
+                  setClickedTime((trackDuration / WIDTH) * x.get())
                 }} 
               >
                 <div className="player__progress-bar">
@@ -114,19 +120,19 @@ const Player = () => {
                 <motion.div
                   className="player__progress-knob" 
                   drag="x"
-                  dragConstraints={{ left: 0, right: 300 }}
+                  dragConstraints={{ left: 0, right: WIDTH }}
                   dragControls={dragControls}
                   dragElastic={0}
                   dragMomentum={false}
                   onDragEnd={
                     (event, info) => {
-                      setClickedTime((trackDuration / 300) * info.point.x)
+                      setClickedTime((trackDuration / WIDTH) * info.point.x)
                     }
                   }
                   style={{ x }}
                 />
               </div>
-              <span>{formatDuration(trackDuration - currentTime)}</span>
+              <span className="player__progress-time">{formatDuration(trackDuration - currentTime)}</span>
             </div>
           </div>
         </div>
