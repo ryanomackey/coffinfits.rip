@@ -13,18 +13,22 @@ const links = [
   {
     icon: faFacebook,
     href: 'https://www.facebook.com/coffinfits/',
+    title: 'Coffin Fits Facebook page link'
   },
   {
     icon: faInstagram,
     href: 'https://www.instagram.com/coffinfits/',
+    title: 'Coffin Fits Instagram page link'
   },
   {
     icon: faYoutube,
     href: 'https://www.youtube.com/channel/UCOERvp0TD-KHXMDQsIeu1bQ',
+    title: 'Coffin Fits YouTube page link'
   },
   {
     icon: faBandcamp,
     href: 'https://coffinfits.bandcamp.com/',
+    title: 'Coffin Fits Bandcamp page link'
   },
 ]
 
@@ -43,6 +47,7 @@ const SocialLinks = () => (
               icon={link.icon}
               size="3x"
               className="social-links__icon"
+              title={link.title}
             />
           </a>
         </li>

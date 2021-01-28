@@ -6,6 +6,8 @@
 import React from "react";
 import Player, { PlayerProvider } from "./src/components/Player";
 
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
 export const wrapRootElement = ({ element }) => (
   <PlayerProvider>
     <Player />
