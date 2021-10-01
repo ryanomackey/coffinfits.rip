@@ -28,7 +28,7 @@ const Player = () => {
     setActiveTrack,
   } = useContext(PlayerContext)
 
-  const WIDTH = 250;
+  const WIDTH = 175;
 
   const x = useMotionValue(0);
   const progressScaleX = useTransform(x, [0, WIDTH], [0, 1]);

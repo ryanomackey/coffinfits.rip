@@ -3,6 +3,22 @@
   width: 100%;
 }
 
+.social-links__booking-email {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+
+.social-links__booking-email a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.social-links__booking-email a:hover {
+  text-decoration: underline;
+}
+
 .social-links__link {
   color: #fff;
   text-decoration: none;

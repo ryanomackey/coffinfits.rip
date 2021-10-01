@@ -1,0 +1,4 @@
+.youtube_embed {
+  width: 100%;
+  height: calc(100vw * 0.5625); /* 16:9 aspect ratio */
+}
