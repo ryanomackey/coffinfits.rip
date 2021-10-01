@@ -1,78 +1,61 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+require('dotenv').config({path: `.env.${process.env.NODE_ENV}`});
 
-const ibmCosSdk = require('ibm-cos-sdk')
-const mm = require('music-metadata')
-const path = require('path')
-const { createFileNodeFromBuffer } = require(`gatsby-source-filesystem`)
+const { initializeApp } = require('firebase/app');
+const { getStorage, ref, listAll, getDownloadURL } = require('firebase/storage');
+const axios = require('axios');
+const musicMetadata = require('music-metadata');
+const path = require('path');
+const { createFileNodeFromBuffer } = require(`gatsby-source-filesystem`);
 
-const BUCKET_NAME = 'coffin-fits-songs'
-const ENDPOINT = 's3.us-east.cloud-object-storage.appdomain.cloud'
+const firebaseConfig = {
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: "coffin-fits.firebaseapp.com",
+  projectId: "coffin-fits",
+  storageBucket: "coffin-fits.appspot.com",
+  messagingSenderId: "277313431426",
+  appId: "1:277313431426:web:909d06b931428037ae519b",
+  measurementId: "G-3GMN5LZMND"
+};
 
-const config = {
-  endpoint: ENDPOINT,
-  apiKeyId: process.env.S3_API_KEY,
-  ibmAuthEndpoint: 'https://iam.cloud.ibm.com/identity/token',
-  serviceInstanceId:
-    'crn:v1:bluemix:public:cloud-object-storage:global:a/0b6a9a5fd2e7f13ecea70ae2308a1e34:165abf94-800a-46b8-90a7-b492b6f43bfc::',
-}
+const firebaseApp = initializeApp(firebaseConfig);
 
-const cos = new ibmCosSdk.S3(config)
+// Get a reference to the storage service, which is used to create references in your storage bucket
+const storage = getStorage(firebaseApp);
 
-const handleCosError = e => {
-  console.error(`ERROR: ${e.code} - ${e.message}\n`)
-}
+// Create a reference under which you want to list
+const listRef = ref(storage);
 
-const getBucketContents = bucketName => {
-  return cos
-    .listObjects({ Bucket: BUCKET_NAME })
-    .promise()
-    .then(data => data.Contents)
-    .catch(handleCosError)
-}
+exports.sourceNodes = async ({  actions, createNodeId, createContentDigest }) => {
+  const { createNode } = actions
 
-const parseBody = buffer =>
-  mm
-    .parseBuffer(buffer, 'audio/mpeg')
-    .then(data => data.common)
-    .catch(err => console.error(err))
+  // Get all buckets (albums)
+  const { prefixes: albumRefs } = await listAll(listRef);
 
-const getItem = itemName => {
-  return cos
-    .getObject({ Bucket: BUCKET_NAME, Key: itemName })
-    .promise()
-    .then(async ({ Body }) => ({
-      url: `https://${BUCKET_NAME}.${ENDPOINT}/${itemName}`,
-      ...(await parseBody(Body)),
-    }))
-    .catch(handleCosError)
-}
+  // Map through each bucket and get the songs for each one
+  const allSongRefPromises = albumRefs.map(async albumRef => {
+    const { items: songRefs} = await listAll(albumRef);
 
-const getItems = contents =>
-  Promise.all(contents.map(async entry => await getItem(entry.Key)))
+    return songRefs;
+  });
+  const allSongRefs = await Promise.all(allSongRefPromises);
 
-const getSongs = async () => {
-  const contents = await getBucketContents()
-  const items = await getItems(contents)
+  // Flatten the buckets and get all the song URLs
+  const allSongUrlPromises = allSongRefs.flat().map(songRef => getDownloadURL(songRef));
+  const allSongUrls = await Promise.all(allSongUrlPromises);
 
-  return items
-}
+  const allSongsWithMetadataPromises = allSongUrls.map(async songUrl => {
+    const response = await axios.get(songUrl, { responseType: 'arraybuffer' });
+    const buffer = Buffer.from(response.data, "utf-8");
+    const { common } = await musicMetadata.parseBuffer(buffer, 'audio/mpeg');
 
-exports.sourceNodes = async ({
-  actions,
-  createNodeId,
-  createContentDigest,
-  getCache,
-  store,
-  cache,
-}) => {
-  const { createNode, createParentChildLink } = actions
+    return {
+      url: songUrl,
+      ...common,
+    };
+  });
+  const allSongsWithMetadata = await Promise.all(allSongsWithMetadataPromises);
 
-  const songs = await getSongs()
-  const albums = songs.reduce((albums, song) => {
+  const albums = allSongsWithMetadata.reduce((albums, song) => {
     const newEntry = {
       name: song.album,
       year: song.year,
