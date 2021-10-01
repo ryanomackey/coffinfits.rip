@@ -1,12 +1,18 @@
 .player {
   background-color: #333333;
   bottom: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   position: fixed;
   padding: .5rem;
-  width: 100%;
   z-index: 1;
+}
+
+@media screen and (max-width: 480px) {
+  .player {
+    width: 100%;
+  }
 }
 
 .player__album-art {
@@ -17,6 +23,12 @@
 
 .player__album-art img {
   margin: 0;
+}
+
+@media screen and (max-width: 480px) {
+  .player__album-art {
+    display: none;
+  }
 }
 
 .player__container {
@@ -36,7 +48,6 @@
   display: flex;
   justify-content: space-between;
   padding: .4rem 3rem;
-  width: 100%;
 }
 
 .player__progress-container {
