@@ -5,15 +5,15 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from 'react'
-import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useStaticQuery, graphql } from 'gatsby';
 
-import Header from '../Header'
-import SocialLinks from '../SocialLinks'
+import Header from '../Header';
+import SocialLinks from '../SocialLinks';
 
-import 'typeface-creepster'
-import './Layout.css'
+import 'typeface-creepster';
+import './Layout.css';
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <>
@@ -40,11 +40,11 @@ const Layout = ({ children }) => {
         <SocialLinks />
       </div>
     </>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default Layout
+export default Layout;

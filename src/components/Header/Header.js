@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'gatsby'
+import React from 'react';
+import { Link } from 'gatsby';
 
-import './Header.css'
+import './Header.css';
 
 const links = [
   {
@@ -12,7 +12,7 @@ const links = [
     href: '/about',
     title: 'About',
   },
-]
+];
 
 const Header = () => (
   <header className="header">
@@ -34,6 +34,6 @@ const Header = () => (
       ))}
     </ul>
   </header>
-)
+);
 
-export default Header
+export default Header;

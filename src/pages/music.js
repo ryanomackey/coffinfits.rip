@@ -1,21 +1,22 @@
-import React from 'react'
-import { graphql, Link } from 'gatsby'
-import Img from 'gatsby-image'
+import React from 'react';
+import { graphql, Link } from 'gatsby';
+import Img from 'gatsby-image';
 
-import Layout from '../components/Layout'
-import SEO from '../components/SEO'
+import Layout from '../components/Layout';
+import SEO from '../components/SEO';
 
-import './music.css'
+import './music.css';
 
-const Music = ({ data }) => {
-  return (
-    <Layout>
-      <SEO title="Music" />
-      <div className="music">
-        {data.allAlbum.edges.map(album => {
+const Music = ({ data }) => (
+  <Layout>
+    <SEO title="Music" />
+    <div className="music">
+      {data.allAlbum.edges
+        .sort((albumA, albumB) => albumB.node.year - albumA.node.year)
+        .map((album) => {
           const albumArt = data.allFile.edges.find(
-            file => file.node.parent?.id === album.node.id
-          )
+            (file) => file.node.parent?.id === album.node.id
+          );
 
           return (
             <Link
@@ -26,12 +27,11 @@ const Music = ({ data }) => {
               <Img fluid={albumArt.node.placeholderImage.fluid} />
               <span className="music__link-name">{album.node.name}</span>
             </Link>
-          )
+          );
         })}
-      </div>
-    </Layout>
-  )
-}
+    </div>
+  </Layout>
+);
 
 export const query = graphql`
   query {
@@ -41,6 +41,7 @@ export const query = graphql`
           id
           name
           path
+          year
         }
       }
     }
@@ -59,6 +60,6 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
-export default Music
+export default Music;
