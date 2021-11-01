@@ -1,14 +1,14 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import React from 'react';
+import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
-import Layout from '../components/Layout'
-import Tracks from '../components/Tracks'
+import Layout from '../components/Layout';
+import Tracks from '../components/Tracks';
 
-import './album.css'
+import './album.css';
 
 const Album = ({ pageContext, data }) => {
-  const { name, tracks } = pageContext
+  const { name, tracks } = pageContext;
 
   return (
     <Layout>
@@ -19,13 +19,20 @@ const Album = ({ pageContext, data }) => {
             <Img fluid={data.placeholderImage.childImageSharp.fluid} />
           </div>
           <div className="album__audio-player">
-            <Tracks album={name} tracks={tracks.map(track => ({ ...track, album: name, art: data.placeholderImage.childImageSharp.fluid }))} />
+            <Tracks
+              album={name}
+              tracks={tracks.map((track) => ({
+                ...track,
+                album: name,
+                art: data.placeholderImage.childImageSharp.fluid,
+              }))}
+            />
           </div>
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
 export const query = graphql`
   query AlbumArt($id: String) {
@@ -37,6 +44,6 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
-export default Album
+export default Album;

@@ -1,30 +1,25 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faVolumeUp } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVolumeUp } from '@fortawesome/free-solid-svg-icons';
 
-import { PlayerContext } from '../Player'
+import { PlayerContext } from '../Player';
 
-import './Tracks.css'
+import './Tracks.css';
 
 const Tracks = ({ tracks }) => {
-  const {
-    playing,
-    activeTrackIndex,
-    setTracks,
-    setActiveTrack,
-    setPlaying,
-  } = useContext(PlayerContext)
+  const { playing, activeTrackIndex, setTracks, setActiveTrack, setPlaying } =
+    useContext(PlayerContext);
 
-  const handleTrackClick = index => {
-    setTracks(tracks)
+  const handleTrackClick = (index) => {
+    setTracks(tracks);
 
-    setActiveTrack(tracks[index])
+    setActiveTrack(tracks[index]);
 
     if (!playing) {
-      setPlaying(true)
+      setPlaying(true);
     }
-  }
+  };
 
   return (
     <div className="tracks">
@@ -45,7 +40,7 @@ const Tracks = ({ tracks }) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default Tracks
+export default Tracks;

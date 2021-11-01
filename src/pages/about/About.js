@@ -1,11 +1,11 @@
-import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
-import './About.css'
+import './About.css';
 
-import Layout from '../../components/Layout'
-import SEO from '../../components/SEO'
+import Layout from '../../components/Layout';
+import SEO from '../../components/SEO';
 
 const About = () => {
   const data = useStaticQuery(graphql`
@@ -18,7 +18,7 @@ const About = () => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <Layout>
@@ -48,7 +48,7 @@ const About = () => {
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default About
+export default About;

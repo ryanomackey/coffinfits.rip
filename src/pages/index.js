@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-import Layout from '../components/Layout'
-import YouTubeEmbed from '../components/YouTubeEmbed'
-import SEO from '../components/SEO'
+import Layout from '../components/Layout';
+import YouTubeEmbed from '../components/YouTubeEmbed';
+import SEO from '../components/SEO';
 
 const IndexPage = () => (
   <Layout>
@@ -11,6 +11,6 @@ const IndexPage = () => (
       <YouTubeEmbed />
     </div>
   </Layout>
-)
+);
 
-export default IndexPage
+export default IndexPage;

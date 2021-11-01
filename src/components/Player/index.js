@@ -1,5 +1,5 @@
-import Player from './Player'
+import Player from './Player';
 
-export * from './useAudioPlayer'
+export * from './useAudioPlayer';
 
-export default Player
+export default Player;

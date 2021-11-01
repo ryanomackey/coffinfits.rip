@@ -1,14 +1,14 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBandcamp,
   faFacebook,
   faInstagram,
   faSpotify,
   faYoutube,
-} from '@fortawesome/free-brands-svg-icons'
+} from '@fortawesome/free-brands-svg-icons';
 
-import './SocialLinks.css'
+import './SocialLinks.css';
 
 const links = [
   {
@@ -36,7 +36,7 @@ const links = [
     href: 'https://coffinfits.bandcamp.com/',
     title: 'Coffin Fits Bandcamp page link',
   },
-]
+];
 
 const SocialLinks = () => (
   <div className="social-links">
@@ -66,6 +66,6 @@ const SocialLinks = () => (
       ))}
     </ul>
   </div>
-)
+);
 
-export default SocialLinks
+export default SocialLinks;

@@ -1,20 +1,26 @@
-require('dotenv').config({path: `.env.${process.env.NODE_ENV}`});
+require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
 
 const { initializeApp } = require('firebase/app');
-const { getStorage, ref, listAll, getDownloadURL } = require('firebase/storage');
+const {
+  getStorage,
+  ref,
+  listAll,
+  getDownloadURL,
+} = require('firebase/storage');
 const axios = require('axios');
 const musicMetadata = require('music-metadata');
 const path = require('path');
+
 const { createFileNodeFromBuffer } = require(`gatsby-source-filesystem`);
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: "coffin-fits.firebaseapp.com",
-  projectId: "coffin-fits",
-  storageBucket: "coffin-fits.appspot.com",
-  messagingSenderId: "277313431426",
-  appId: "1:277313431426:web:909d06b931428037ae519b",
-  measurementId: "G-3GMN5LZMND"
+  authDomain: 'coffin-fits.firebaseapp.com',
+  projectId: 'coffin-fits',
+  storageBucket: 'coffin-fits.appspot.com',
+  messagingSenderId: '277313431426',
+  appId: '1:277313431426:web:909d06b931428037ae519b',
+  measurementId: 'G-3GMN5LZMND',
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -25,27 +31,33 @@ const storage = getStorage(firebaseApp);
 // Create a reference under which you want to list
 const listRef = ref(storage);
 
-exports.sourceNodes = async ({  actions, createNodeId, createContentDigest }) => {
-  const { createNode } = actions
+exports.sourceNodes = async ({
+  actions,
+  createNodeId,
+  createContentDigest,
+}) => {
+  const { createNode } = actions;
 
   // Get all buckets (albums)
   const { prefixes: albumRefs } = await listAll(listRef);
 
   // Map through each bucket and get the songs for each one
-  const allSongRefPromises = albumRefs.map(async albumRef => {
-    const { items: songRefs} = await listAll(albumRef);
+  const allSongRefPromises = albumRefs.map(async (albumRef) => {
+    const { items: songRefs } = await listAll(albumRef);
 
     return songRefs;
   });
   const allSongRefs = await Promise.all(allSongRefPromises);
 
   // Flatten the buckets and get all the song URLs
-  const allSongUrlPromises = allSongRefs.flat().map(songRef => getDownloadURL(songRef));
+  const allSongUrlPromises = allSongRefs
+    .flat()
+    .map((songRef) => getDownloadURL(songRef));
   const allSongUrls = await Promise.all(allSongUrlPromises);
 
-  const allSongsWithMetadataPromises = allSongUrls.map(async songUrl => {
+  const allSongsWithMetadataPromises = allSongUrls.map(async (songUrl) => {
     const response = await axios.get(songUrl, { responseType: 'arraybuffer' });
-    const buffer = Buffer.from(response.data, "utf-8");
+    const buffer = Buffer.from(response.data, 'utf-8');
     const { common } = await musicMetadata.parseBuffer(buffer, 'audio/mpeg');
 
     return {
@@ -61,32 +73,34 @@ exports.sourceNodes = async ({  actions, createNodeId, createContentDigest }) =>
       year: song.year,
       albumArt: song.picture[0].data,
       tracks: [],
-    }
+    };
 
     const track = {
       url: song.url,
       title: song.title,
-    }
+    };
 
-    const existingEntry = albums.find(element => element.name === newEntry.name)
+    const existingEntry = albums.find(
+      (element) => element.name === newEntry.name
+    );
     const existingEntryIndex = albums.findIndex(
-      element => element.name === newEntry.name
-    )
+      (element) => element.name === newEntry.name
+    );
 
     if (existingEntry) {
-      albums[existingEntryIndex].tracks[song.track.no - 1] = track
+      albums[existingEntryIndex].tracks[song.track.no - 1] = track;
 
-      return albums
+      return albums;
     }
 
-    newEntry.tracks[song.track.no - 1] = track
+    newEntry.tracks[song.track.no - 1] = track;
 
-    return [...albums, newEntry]
-  }, [])
+    return [...albums, newEntry];
+  }, []);
 
-  albums.forEach(async album => {
-    const { name, year, albumArt, tracks } = album
-    const id = createNodeId(`coffin-fits-songs--${album.name}`)
+  albums.forEach(async (album) => {
+    const { name, year, albumArt, tracks } = album;
+    const id = createNodeId(`coffin-fits-songs--${album.name}`);
 
     createNode({
       id,
@@ -101,18 +115,16 @@ exports.sourceNodes = async ({  actions, createNodeId, createContentDigest }) =>
         contentDigest: createContentDigest(album),
         content: JSON.stringify(albumArt),
       },
-    })
-  })
-
-  return
-}
+    });
+  });
+};
 
 exports.onCreateNode = ({ node, actions, store, cache, createNodeId }) => {
   if (node.internal.type === 'Album') {
-    const { createNode } = actions
-    const { id, name } = node
+    const { createNode } = actions;
+    const { id, name } = node;
 
-    const buffer = Buffer.from(JSON.parse(node.internal.content).data)
+    const buffer = Buffer.from(JSON.parse(node.internal.content).data);
 
     createFileNodeFromBuffer({
       buffer,
@@ -122,13 +134,13 @@ exports.onCreateNode = ({ node, actions, store, cache, createNodeId }) => {
       cache,
       createNodeId,
       createNode,
-    })
+    });
   }
-}
+};
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
-  const albumPageTemplate = path.resolve('src/templates/album.js')
+  const { createPage } = actions;
+  const albumPageTemplate = path.resolve('src/templates/album.js');
 
   return graphql(`
     query getAlbums {
@@ -147,9 +159,9 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
     }
-  `).then(result => {
-    result.data.allAlbum.edges.forEach(edge => {
-      const { id, name, year, tracks, path } = edge.node
+  `).then((result) => {
+    result.data.allAlbum.edges.forEach((edge) => {
+      const { id, name, year, tracks, path } = edge.node;
 
       createPage({
         path,
@@ -160,7 +172,7 @@ exports.createPages = ({ graphql, actions }) => {
           year,
           tracks,
         },
-      })
-    })
-  })
-}
+      });
+    });
+  });
+};
