@@ -10,11 +10,7 @@ export default function Lore() {
     <main className="main-container">
       <article className="grid grid-cols-1 gap-4 py-8 md:grid-cols-2">
         <div className="text-center">
-          <img
-            src={hearse}
-            alt="The Coffin Fits fittin in a coffin"
-            className="w-full"
-          />
+          <img src={hearse} alt="The Coffin Fits fittin in a coffin" />
           <p className="text-sm">
             From left: Lindsay Reyna, Ryan Mackey, Tommy Regan
           </p>
