@@ -1,4 +1,4 @@
-import { json, type MetaFunction } from '@remix-run/node';
+import { json, type MetaFunction } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
 import { Halloween } from '~/components/Halloween';
 import dates from '~/data/dates';
