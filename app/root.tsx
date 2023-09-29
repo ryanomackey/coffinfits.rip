@@ -32,7 +32,10 @@ export const meta: MetaFunction = () => [
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
   ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
-  { rel: 'stylesheet', href: 'https://fonts.cdnfonts.com/css/creepster' },
+  {
+    rel: 'stylesheet',
+    href: 'https://fonts.googleapis.com/css?family=Creepster:400&display=swap',
+  },
   // Favicon stuff
   { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
   {
