@@ -63,7 +63,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="h-full bg-neutral-900 text-neutral-100">
+      <body className="grid h-screen grid-rows-[auto_1fr_auto] bg-neutral-900 text-neutral-100">
         <Navigation />
         <Outlet />
         <Footer />

@@ -54,7 +54,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   aria-label={link.title}
                 >
-                  <Icon aria-hidden />
+                  <Icon className="h-6 w-6 md:h-8 md:w-8" aria-hidden />
                 </a>
               </li>
             );

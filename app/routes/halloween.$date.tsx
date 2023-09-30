@@ -30,7 +30,7 @@ export default function HalloweenDate() {
       {href && (
         <iframe
           title="youtube embed"
-          src={`${href}?origin=http://example.com"`}
+          src={href}
           className="aspect-video w-full"
         />
       )}
