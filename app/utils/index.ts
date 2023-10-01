@@ -8,7 +8,11 @@ export const getHalloweenCountdownHelpers = (date: number) => {
   const isAtLeastOctober2023 =
     currentYear >= TARGET_YEAR && currentMonth >= TARGET_MONTH;
 
-  const dateIsAvailable = today.getDate() >= date;
+  const centralDate = +today.toLocaleString('en-US', {
+    timeZone: 'America/Chicago',
+    day: 'numeric',
+  });
+  const dateIsAvailable = centralDate >= date;
 
   return {
     isAtLeastOctober2023,
