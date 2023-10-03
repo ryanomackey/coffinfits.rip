@@ -1,5 +1,5 @@
 import { cssBundleHref } from '@remix-run/css-bundle';
-import type { LinksFunction, MetaFunction } from '@remix-run/cloudflare';
+import type { LinksFunction } from '@remix-run/cloudflare';
 import {
   Links,
   LiveReload,
@@ -11,23 +11,6 @@ import {
 import stylesheet from '~/tailwind.css';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
-
-export const meta: MetaFunction = () => [
-  {
-    name: 'description',
-    content:
-      'A vaguely psychedelic sort of diet-goth™ garage rock band based in Austin, TX.',
-  },
-  // Favicon stuff
-  {
-    name: 'msapplication-TileColor',
-    content: '#da532c',
-  },
-  {
-    name: 'theme-color',
-    content: '#ffffff',
-  },
-];
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
@@ -60,6 +43,12 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="description"
+          content="A vaguely psychedelic sort of diet-goth™ garage rock band based in Austin, TX."
+        />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
         <Meta />
         <Links />
       </head>
