@@ -27,7 +27,7 @@ const dates: Date[] = [
   },
   {
     day: 7,
-    href: '',
+    href: 'https://youtube.com/embed/iCMnpQeC-yI',
   },
   {
     day: 8,
