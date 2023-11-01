@@ -55,7 +55,7 @@ const dates: Date[] = [
   },
   {
     day: 14,
-    href: '',
+    href: 'https://youtube.com/embed/fw11-0pMg7A',
   },
   {
     day: 15,
@@ -115,7 +115,7 @@ const dates: Date[] = [
   },
   {
     day: 29,
-    href: '',
+    href: 'https://youtube.com/embed/v9fbWH6z6QQ',
   },
   {
     day: 30,
@@ -123,7 +123,7 @@ const dates: Date[] = [
   },
   {
     day: 31,
-    href: '',
+    href: 'https://youtube.com/embed/lhAIVz6vXs4',
   },
 ];
 
