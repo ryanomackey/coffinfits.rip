@@ -1,8 +1,7 @@
 import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/cloudflare';
-import { json, redirect } from '@remix-run/cloudflare';
+import { json } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
 import { HalloweenHeader } from '~/components/HalloweenHeader';
-import { getHalloweenCountdownHelpers } from '~/utils';
 import dates from '~/data/dates';
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
@@ -11,14 +10,8 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 
 export const loader = ({ params }: LoaderFunctionArgs) => {
   const date = Number(params.date);
-  const { isAtLeastOctober2023, dateIsAvailable } =
-    getHalloweenCountdownHelpers(date);
 
-  if (isAtLeastOctober2023 && dateIsAvailable) {
-    return json(dates[date - 1]);
-  }
-
-  return redirect('/');
+  return json(dates[date - 1]);
 };
 
 export default function HalloweenDate() {
