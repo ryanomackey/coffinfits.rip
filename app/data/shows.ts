@@ -2,8 +2,7 @@ import type { Show } from '~/types';
 
 const shows: Show[] = [
   {
-    date: '2023-11-30',
-    time: 'Doors at 7:00 PM',
+    date: '2023-11-30T19:00:00-0600',
     venue: {
       name: 'How Much?! Studios',
       address: {
@@ -17,8 +16,36 @@ const shows: Show[] = [
     otherBands: [{ name: 'BOO85' }],
   },
   {
-    date: '2023-12-14',
-    time: 'Doors at 9:00 PM',
+    date: '2023-12-15T21:00:00-0600',
+    venue: {
+      name: 'Hotel Vegas',
+      address: {
+        line1: '1502 E 6th St',
+        city: 'Austin',
+        state: 'TX',
+        zip: '78702',
+      },
+    },
+    otherBands: [
+      { name: 'Dead Tramps' },
+      { name: 'Tear Dungeon' },
+      { name: 'Shivering Demons' },
+    ],
+  },
+  {
+    date: '2023-12-28T20:00:00-0600',
+    venue: {
+      name: 'The Hole in the Wall',
+      address: {
+        line1: '2538 Guadalupe St',
+        city: 'Austin',
+        state: 'TX',
+        zip: '78705',
+      },
+    },
+  },
+  {
+    date: '2024-01-11T21:00:00-0600',
     venue: {
       name: 'Swan Dive',
       address: {
@@ -31,31 +58,7 @@ const shows: Show[] = [
     otherBands: [{ name: 'BOO85' }, { name: 'Solar Moth' }],
   },
   {
-    date: '2023-12-15',
-    venue: {
-      name: 'Hotel Vegas',
-      address: {
-        line1: '1502 E 6th St',
-        city: 'Austin',
-        state: 'TX',
-        zip: '78702',
-      },
-    },
-  },
-  {
-    date: '2023-12-28',
-    venue: {
-      name: 'The Hole in the Wall',
-      address: {
-        line1: '2538 Guadalupe St',
-        city: 'Austin',
-        state: 'TX',
-        zip: '78705',
-      },
-    },
-  },
-  {
-    date: '2024-01-19',
+    date: '2024-01-19T21:30:00-0600',
     venue: {
       name: 'Rio Market',
       address: {

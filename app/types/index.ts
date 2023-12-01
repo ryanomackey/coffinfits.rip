@@ -22,7 +22,6 @@ type Band = {
 
 export type Show = {
   date: string;
-  time?: string;
   venue: Venue;
   otherBands?: Band[];
 };
