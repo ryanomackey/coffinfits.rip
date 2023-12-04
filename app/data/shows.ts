@@ -70,6 +70,18 @@ const shows: Show[] = [
     },
     otherBands: [{ name: 'BOO85' }, { name: 'Jay Wanderer' }],
   },
+  {
+    date: '2024-01-30T20:00:00-0600',
+    venue: {
+      name: 'Mohawk',
+      address: {
+        line1: '912 Red River St',
+        city: 'Austin',
+        state: 'TX',
+        zip: '78701',
+      },
+    },
+  },
 ];
 
 export default shows;
