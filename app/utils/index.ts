@@ -1,3 +1,6 @@
+import { isAfter } from 'date-fns';
+import type { Show } from '~/types';
+
 export const getHalloweenCountdownHelpers = (date: number) => {
   const today = new Date();
 
@@ -18,4 +21,10 @@ export const getHalloweenCountdownHelpers = (date: number) => {
     isAtLeastOctober2023,
     dateIsAvailable,
   };
+};
+
+export const upcomingShowsFilter = (show: Show) => {
+  const date = new Date(show.date);
+
+  return isAfter(date, new Date());
 };
