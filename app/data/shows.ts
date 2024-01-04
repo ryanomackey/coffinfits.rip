@@ -55,7 +55,7 @@ const shows: Show[] = [
         zip: '78701',
       },
     },
-    otherBands: [{ name: 'BOO85' }, { name: 'Solar Moth' }],
+    otherBands: [{ name: 'BOO85' }, { name: 'Digger of Dirt' }],
   },
   {
     date: '2024-01-19T21:30:00-0600',
