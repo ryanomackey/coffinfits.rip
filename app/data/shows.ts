@@ -58,7 +58,7 @@ const shows: Show[] = [
     otherBands: [{ name: 'BOO85' }, { name: 'Digger of Dirt' }],
   },
   {
-    date: '2024-01-19T21:30:00-0600',
+    date: '2024-01-19T19:00:00-0600',
     venue: {
       name: 'Rio Market',
       address: {
