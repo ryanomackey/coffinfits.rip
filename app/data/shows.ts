@@ -81,6 +81,20 @@ const shows: Show[] = [
         zip: '78701',
       },
     },
+    otherBands: [{ name: 'BOO85' }, { name: 'Painted Panic' }],
+  },
+  {
+    date: '2024-02-23T20:00:00-0600',
+    venue: {
+      name: 'Nosferatu Festival @ Kick Butt Coffee',
+      address: {
+        line1: '5775 Airport Blvd',
+        line2: 'Suite 725',
+        city: 'Austin',
+        state: 'TX',
+        zip: '78752',
+      },
+    },
   },
 ];
 
