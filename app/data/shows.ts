@@ -96,6 +96,32 @@ const shows: Show[] = [
       },
     },
   },
+  {
+    date: '2024-03-14T19:00:00-0500',
+    venue: {
+      name: 'Deep-Fried Fest @ Voodoo Doughnut',
+      address: {
+        line1: '212 E 6th St',
+        city: 'Austin',
+        state: 'TX',
+        zip: '78701',
+      },
+    },
+    otherBands: [
+      {
+        name: 'TC Jester',
+      },
+      {
+        name: 'CONNOR',
+      },
+      {
+        name: 'Dyed Skies',
+      },
+      {
+        name: 'Summer Affective Disorder',
+      },
+    ],
+  },
 ];
 
 export default shows;
