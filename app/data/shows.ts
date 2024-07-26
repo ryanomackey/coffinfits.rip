@@ -122,6 +122,137 @@ const shows: Show[] = [
       },
     ],
   },
+  {
+    date: '2024-05-11T19:00:00-0500',
+    venue: {
+      name: 'Vinyl Beauty Bar',
+      address: {
+        line1: '2400 E Cesar Chavez St',
+        city: 'Austin',
+        state: 'TX',
+        zip: '78702',
+      },
+    },
+    otherBands: [
+      {
+        name: 'Digger of Dirt',
+      },
+      {
+        name: 'Snack Supper',
+      },
+      {
+        name: 'Maddie Ava (from Maddie and the Deadnames)',
+      },
+    ],
+  },
+  {
+    date: '2024-07-07T19:00:00-0500',
+    venue: {
+      name: 'Sahara Lounge',
+      address: {
+        line1: '1413 Webberville Rd',
+        city: 'Austin',
+        state: 'TX',
+        zip: '78721',
+      },
+    },
+    otherBands: [
+      {
+        name: 'Baseball Touchdown',
+      },
+      {
+        name: 'Cruel Summer',
+      },
+    ],
+  },
+  {
+    date: '2024-07-23T21:00:00-0500',
+    venue: {
+      name: 'Hotel Vegas',
+      address: {
+        line1: '1502 E 6th St',
+        city: 'Austin',
+        state: 'TX',
+        zip: '78702',
+      },
+    },
+    otherBands: [
+      {
+        name: 'Coolworld',
+      },
+      {
+        name: 'Fudosa',
+      },
+      {
+        name: 'La Fermata',
+      },
+    ],
+  },
+  {
+    date: '2024-08-02T20:00:00-0500',
+    venue: {
+      name: 'The Coral Snake',
+      address: {
+        line1: '1910 E Cesar Chavez St',
+        city: 'Austin',
+        state: 'TX',
+        zip: '78702',
+      },
+    },
+  },
+  {
+    date: '2024-08-24T20:00:00-0500',
+    venue: {
+      name: 'Hanovers Draught Haus',
+      address: {
+        line1: '108 E Main St',
+        city: 'Pflugerville',
+        state: 'TX',
+        zip: '78660',
+      },
+    },
+    otherBands: [
+      {
+        name: 'Hazard Hounds',
+      },
+      {
+        name: 'Foxglove',
+      },
+    ],
+  },
+  {
+    date: '2024-08-31T21:00:00-0500',
+    venue: {
+      name: 'The Buzz Mill',
+      address: {
+        line1: '1505 Town Creek Dr',
+        city: 'Austin',
+        state: 'TX',
+        zip: '78741',
+      },
+    },
+  },
+  {
+    date: '2024-10-17T22:00:00-0500',
+    venue: {
+      name: 'Kick Butt Coffee',
+      address: {
+        line1: '5775 Airport Blvd',
+        line2: 'Suite 725',
+        city: 'Austin',
+        state: 'TX',
+        zip: '78752',
+      },
+    },
+    otherBands: [
+      {
+        name: 'The Faux McCoys',
+      },
+      {
+        name: 'Danny B Harvey',
+      },
+    ],
+  },
 ];
 
 export default shows;
