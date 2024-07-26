@@ -189,18 +189,6 @@ const shows: Show[] = [
     ],
   },
   {
-    date: '2024-08-02T20:00:00-0500',
-    venue: {
-      name: 'The Coral Snake',
-      address: {
-        line1: '1910 E Cesar Chavez St',
-        city: 'Austin',
-        state: 'TX',
-        zip: '78702',
-      },
-    },
-  },
-  {
     date: '2024-08-24T20:00:00-0500',
     venue: {
       name: 'Hanovers Draught Haus',
