@@ -209,7 +209,7 @@ const shows: Show[] = [
     ],
   },
   {
-    date: '2024-08-31T21:00:00-0500',
+    date: '2024-08-31T20:00:00-0500',
     venue: {
       name: 'The Buzz Mill',
       address: {
@@ -219,6 +219,11 @@ const shows: Show[] = [
         zip: '78741',
       },
     },
+    otherBands: [
+      {
+        name: 'Wild Heaven',
+      },
+    ],
   },
   {
     date: '2024-10-17T22:00:00-0500',
