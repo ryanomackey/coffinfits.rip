@@ -226,25 +226,52 @@ const shows: Show[] = [
     ],
   },
   {
-    date: '2024-10-17T22:00:00-0500',
+    date: '2024-10-13T20:00:00-0500',
     venue: {
-      name: 'Kick Butt Coffee',
+      name: 'Hotel Vegas',
       address: {
-        line1: '5775 Airport Blvd',
-        line2: 'Suite 725',
+        line1: '1502 E 6th St',
         city: 'Austin',
         state: 'TX',
-        zip: '78752',
+        zip: '78702',
       },
     },
     otherBands: [
       {
-        name: 'The Faux McCoys',
+        name: 'Shivering Demons',
       },
       {
-        name: 'Danny B Harvey',
+        name: 'Port of Monks',
+      },
+      {
+        name: 'Topdown',
       },
     ],
+  },
+  {
+    date: '2024-10-26T20:00:00-0500',
+    venue: {
+      name: 'The Coral Snake',
+      address: {
+        line1: '1910 E Cesar Chavez St',
+        city: 'Austin',
+        state: 'TX',
+        zip: '78702',
+      },
+    },
+  },
+  {
+    date: '2024-10-29T18:00:00-0600',
+    venue: {
+      name: 'Mohawk',
+      address: {
+        line1: '912 Red River St',
+        city: 'Austin',
+        state: 'TX',
+        zip: '78701',
+      },
+    },
+    otherBands: [{ name: 'MissFits' }],
   },
 ];
 
