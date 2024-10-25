@@ -39,7 +39,7 @@ export const links: LinksFunction = () => [
 
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -52,7 +52,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="grid h-screen grid-rows-[auto_1fr_auto] bg-neutral-900 text-neutral-100">
+      <body className="grid h-screen grid-rows-[auto_1fr_auto]">
         <Navigation />
         <Outlet />
         <Footer />
