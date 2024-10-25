@@ -39,8 +39,10 @@ export default function Footer() {
     <footer className="mt-32 border-t-2 border-orange-600">
       <div className="main-container">
         <span className="my-8 block w-full text-center">
-          <a href="mailto:coffinfits@gmail.com">coffinfits@gmail.com</a> for
-          booking
+          <a className="hover:text-primary" href="mailto:coffinfits@gmail.com">
+            coffinfits@gmail.com
+          </a>{' '}
+          for booking
         </span>
         <ul className="my-8 flex justify-around">
           {links.map((link, index) => {
@@ -54,7 +56,10 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   aria-label={link.title}
                 >
-                  <Icon className="h-6 w-6 md:h-8 md:w-8" aria-hidden />
+                  <Icon
+                    className="hover:text-primary h-6 w-6 md:h-8 md:w-8"
+                    aria-hidden
+                  />
                 </a>
               </li>
             );
