@@ -1,4 +1,5 @@
 import { type MetaFunction } from '@remix-run/cloudflare';
+import { AspectRatio } from '~/components/ui/aspect-ratio';
 import hearse from '~/images/hearse.jpg';
 
 export const meta: MetaFunction = () => {
@@ -10,7 +11,9 @@ export default function Lore() {
     <main className="main-container">
       <article className="grid grid-cols-1 gap-4 py-8 md:grid-cols-2">
         <div className="text-center">
-          <img src={hearse} alt="The Coffin Fits fittin in a coffin" />
+          <AspectRatio ratio={4 / 3} className="bg-muted">
+            <img src={hearse} alt="The Coffin Fits fittin in a coffin" />
+          </AspectRatio>
           <p className="text-sm">
             From left: Lindsay Reyna, Ryan Mackey, Tommy Regan
           </p>
