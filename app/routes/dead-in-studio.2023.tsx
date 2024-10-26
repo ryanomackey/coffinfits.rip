@@ -3,7 +3,7 @@ import { Calendar } from '~/components/Calendar';
 import { HalloweenHeader } from '~/components/HalloweenHeader';
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'The Coffin Fits | Dead In Studio - 2023' }];
+  return [{ title: 'The Coffin Fits | Dead In Studio 2023' }];
 };
 
 export default function Index() {

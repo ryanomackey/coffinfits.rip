@@ -5,7 +5,9 @@ import { HalloweenHeader } from '~/components/HalloweenHeader';
 import dates from '~/data/dates';
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [{ title: `The Coffin Fits | Halloween Day ${data?.day}` }];
+  return [
+    { title: `The Coffin Fits | Dead In Studio 2023 | Day ${data?.day}` },
+  ];
 };
 
 export const loader = ({ params }: LoaderFunctionArgs) => {
