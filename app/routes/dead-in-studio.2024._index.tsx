@@ -27,7 +27,7 @@ export async function loader({ context }: LoaderFunctionArgs) {
 export default function Index() {
   const data = useLoaderData<typeof loader>();
 
-  let countries;
+  let countries: d3.ExtendedFeatureCollection;
 
   try {
     countries = JSON.parse(data.countries || '');
@@ -70,7 +70,7 @@ export default function Index() {
       .datum({ type: 'Sphere' })
       .attr('fill', 'hsl(var(--foreground))')
       .attr('stroke', 'hsl(var(--ring))')
-      .attr('d', path);
+      .attr('d', path as any);
 
     // Add a path for each country and color it according te this data.
     svg
@@ -79,7 +79,7 @@ export default function Index() {
       .data(countries.features)
       .join('a')
       .attr('xlink:href', (d) => {
-        switch (d.properties.name) {
+        switch (d.properties?.name) {
           case 'Brazil':
             return '/dead-in-studio/2024/brazil';
           case 'Germany':
@@ -94,16 +94,16 @@ export default function Index() {
       })
       .append('path')
       .attr('fill', (d) => {
-        return valuemap.get(d.properties.name) === 1
+        return valuemap.get(d.properties?.name) === 1
           ? 'hsl(var(--primary))'
           : 'hsl(var(--background))';
       })
       .attr('class', (d) =>
-        valuemap.get(d.properties.name) === 1 ? 'animate-pulse' : '',
+        valuemap.get(d.properties?.name) === 1 ? 'animate-pulse' : '',
       )
-      .attr('d', path)
+      .attr('d', path as any)
       .append('title')
-      .text((d) => d.properties.name);
+      .text((d) => d.properties?.name);
 
     // Add a white mesh.
     svg
@@ -111,7 +111,7 @@ export default function Index() {
       .datum(countrymesh)
       .attr('fill', 'none')
       .attr('stroke', 'hsl(var(--ring))')
-      .attr('d', path);
+      .attr('d', path as any);
   }, [countries.features]);
 
   return (
