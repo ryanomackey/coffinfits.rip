@@ -1,18 +1,46 @@
-import type { MetaFunction } from '@remix-run/cloudflare';
 import { useEffect, useRef } from 'react';
-import { HalloweenHeader } from '~/components/HalloweenHeader';
+import { useLoaderData } from '@remix-run/react';
+import {
+  json,
+  type LoaderFunctionArgs,
+  type MetaFunction,
+} from '@remix-run/cloudflare';
 import * as d3 from 'd3';
 
+import { HalloweenHeader } from '~/components/HalloweenHeader';
+
 import hale from '~/data/hale.json';
-import countries from '~/data/countries.json';
 import countrymesh from '~/data/countrymesh.json';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'The Coffin Fits | Dead In Studio 2024' }];
 };
 
+export async function loader({ context }: LoaderFunctionArgs) {
+  const { coffinfits } = context.cloudflare.env;
+
+  if (process.env.NODE_ENV !== 'production') {
+    const countries = await import('~/data/countries.json');
+    await coffinfits.put('countries', JSON.stringify(countries.default));
+  }
+
+  const countries = await coffinfits.get('countries');
+
+  return json({ countries });
+}
+
 export default function Index() {
-  const ref = useRef<SVGElement | null>(null);
+  const data = useLoaderData<typeof loader>();
+
+  let countries;
+
+  try {
+    countries = JSON.parse(data.countries || '');
+  } catch (error) {
+    throw new Error('Unable to parse country data');
+  }
+
+  const ref = useRef<SVGSVGElement | null>(null);
 
   useEffect(() => {
     // Specify the chart’s dimensions.
@@ -86,7 +114,7 @@ export default function Index() {
       .attr('fill', 'none')
       .attr('stroke', 'hsl(var(--ring))')
       .attr('d', path);
-  }, []);
+  }, [countries.features]);
 
   return (
     <main className="main-container">
