@@ -98,6 +98,9 @@ export default function Index() {
           ? 'hsl(var(--primary))'
           : 'hsl(var(--background))';
       })
+      .attr('class', (d) =>
+        valuemap.get(d.properties.name) === 1 ? 'animate-pulse' : '',
+      )
       .attr('d', path)
       .append('title')
       .text((d) => d.properties.name);
