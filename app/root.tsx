@@ -1,20 +1,23 @@
-import { cssBundleHref } from '@remix-run/css-bundle';
 import type { LinksFunction } from '@remix-run/cloudflare';
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react';
-import stylesheet from '~/tailwind.css';
+import '~/tailwind.css';
 import { Navigation } from '~/components/Navigation';
 import { Footer } from '~/components/Footer';
 
 export const links: LinksFunction = () => [
-  { rel: 'stylesheet', href: stylesheet },
-  ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
+  // Fonts
+  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+  {
+    rel: 'preconnect',
+    href: 'https://fonts.gstatic.com',
+    crossOrigin: 'anonymous',
+  },
   {
     rel: 'stylesheet',
     href: 'https://fonts.googleapis.com/css?family=Creepster:400&display=swap',
@@ -37,7 +40,7 @@ export const links: LinksFunction = () => [
   { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#000000' },
 ];
 
-export default function App() {
+export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
       <head>
@@ -54,11 +57,10 @@ export default function App() {
       </head>
       <body className="grid h-screen grid-rows-[auto_1fr_auto]">
         <Navigation />
-        <Outlet />
+        {children}
         <Footer />
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
         {/* Cloudflare Web Analytics */}
         <script
           defer
@@ -69,4 +71,8 @@ export default function App() {
       </body>
     </html>
   );
+}
+
+export default function App() {
+  return <Outlet />;
 }

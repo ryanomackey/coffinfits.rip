@@ -20,7 +20,7 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground hover:text-primary block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors',
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground hover:text-primary focus:bg-accent focus:text-accent-foreground',
             className,
           )}
           {...props}
@@ -28,7 +28,7 @@ const ListItem = React.forwardRef<
           <div className="font-[Creepster] text-sm font-medium leading-none">
             {title}
           </div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
         </a>
@@ -40,15 +40,15 @@ ListItem.displayName = 'ListItem';
 
 export default function Navigation() {
   return (
-    <nav className="shadow-primary w-full shadow-md">
+    <nav className="w-full shadow-md shadow-primary">
       <div className="main-container flex justify-between py-4">
-        <Link className="hover:text-primary font-['Creepster'] text-3xl" to="/">
+        <Link className="font-['Creepster'] text-3xl hover:text-primary" to="/">
           coffinfits.rip
         </Link>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="pr-0 font-[Creepster] text-3xl">
+              <NavigationMenuTrigger className="mr-[-16px] font-[Creepster] text-3xl">
                 Menu
               </NavigationMenuTrigger>
               <NavigationMenuContent>

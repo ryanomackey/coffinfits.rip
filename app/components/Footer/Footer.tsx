@@ -57,7 +57,7 @@ export default function Footer() {
                   aria-label={link.title}
                 >
                   <Icon
-                    className="hover:text-primary h-6 w-6 md:h-8 md:w-8"
+                    className="h-6 w-6 hover:text-primary md:h-8 md:w-8"
                     aria-hidden
                   />
                 </a>

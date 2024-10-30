@@ -8,7 +8,7 @@ export const meta: MetaFunction = () => {
 
 function ListItem({ year }: { year: number }) {
   return (
-    <li className="hover:text-primary my-32 text-center font-serif text-4xl">
+    <li className="my-32 text-center font-serif text-4xl hover:text-primary">
       <Link to={`/dead-in-studio/${year}`}>{year}</Link>
     </li>
   );

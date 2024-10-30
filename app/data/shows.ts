@@ -261,7 +261,7 @@ const shows: Show[] = [
     },
   },
   {
-    date: '2024-10-29T18:00:00-0600',
+    date: '2024-10-29T18:00:00-0500',
     venue: {
       name: 'Mohawk',
       address: {
@@ -272,6 +272,18 @@ const shows: Show[] = [
       },
     },
     otherBands: [{ name: 'MissFits' }],
+  },
+  {
+    date: '2024-12-14T18:00:00-0600',
+    venue: {
+      name: 'The Buzz Mill',
+      address: {
+        line1: '1505 Town Creek Dr',
+        city: 'Austin',
+        state: 'TX',
+        zip: '78741',
+      },
+    },
   },
 ];
 
