@@ -19,11 +19,6 @@ export const meta: MetaFunction = () => {
 export async function loader({ context }: LoaderFunctionArgs) {
   const { coffinfits } = context.cloudflare.env;
 
-  if (process.env.NODE_ENV !== 'production') {
-    const countries = await import('~/data/countries.json');
-    await coffinfits.put('countries', JSON.stringify(countries.default));
-  }
-
   const countries = await coffinfits.get('countries');
 
   return json({ countries });
